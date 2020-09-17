@@ -1,0 +1,31 @@
+<div class="main-card">
+    <div class="main-title">
+        <img src="assets/logo.png">
+        <div><span>Sahayam</span></div>
+        <div class="image-upload">
+            <label for="file-input">
+                <img src="assets/attach_file.png" />
+            </label>
+            <input id="file-input" type="file" multiple (change)="handleFileInput($event.target.files)" />
+        </div>
+    </div>
+    <div class="chat-area" id="message-box">
+        <ng-container *ngFor="let message of messages">
+            <div class="chat-message-div">
+                <span [ngClass]="{ 'span-to': message.author === 'user'}"></span>
+                <div class="message" [ngClass]="{ 'from': message.author === 'bot',
+    'to': message.author === 'user' }">
+                    {{ message.content }}
+                </div>
+            </div>
+        </ng-container>
+    </div>
+    <div class="input-div">
+        <input [(ngModel)]="value" class="input-message" (keyup.enter)="sendMessage()" type="text">
+        <button class="input-send" (click)="sendMessage()">
+            <svg style="width:24px;height:24px">
+                <path d="M2,21L23,12L2,3V10L17,12L2,14V21Z" />
+            </svg>
+        </button>
+    </div>
+</div>
